@@ -5,3 +5,4 @@ Pillow
 edge-tts
 yt-dlp
 beautifulsoup4
+curl_cffi

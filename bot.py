@@ -410,14 +410,18 @@ def f_download(url, cid, mode='audio'):
             ydl_opts = {
                 'format': 'bestaudio/best', 
                 'outtmpl': f'./{cid}_dl_%(id)s.%(ext)s', 
-                'noplaylist': True, 'quiet': True, 
+                'noplaylist': True, 
+                'quiet': True, 
+                'impersonate': 'chrome',
                 'postprocessors': [{'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': '192'}]
             }
         else: # Video HQ
             ydl_opts = {
                 'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
                 'outtmpl': f'./{cid}_dl_%(id)s.%(ext)s', 
-                'noplaylist': True, 'quiet': True,
+                'noplaylist': True, 
+                'quiet': True,
+                'impersonate': 'chrome',
             }
             
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
