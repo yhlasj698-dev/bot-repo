@@ -3,6 +3,5 @@ requests
 qrcode[pil]
 Pillow
 edge-tts
-yt-dlp
+yt-dlp[default,curl-cffi]
 beautifulsoup4
-curl_cffi
