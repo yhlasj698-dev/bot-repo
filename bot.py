@@ -11,7 +11,6 @@ from bs4 import BeautifulSoup
 TOKEN = os.environ.get("BOT_TOKEN")
 bot = telebot.TeleBot(TOKEN, parse_mode="HTML")
 
-# ---------- WAGTLAÝYN KES (CACHE) ----------
 url_cache = {}
 
 # ---------- BAZA ----------
@@ -37,18 +36,20 @@ LANGS = {'tk':'🇹🇲 Türkmen','ru':'🇷🇺 Русский','en':'🇬🇧 
 T = {
 'tk': {
  'menu': "🤖 <b>Esasy Menýu</b>\n\nHaýsy bölümi saýlaýarsyňyz?",
- 'cat_w': "🌤 Howa & Täzelikler", 'desc_w': "<b>🌤 Howa & Täzelikler</b>\n\n12 sagatlyk howa maglumaty, soňky zilzilalar we IT täzelikleri.",
- 'cat_os': "🕵️ OSINT & Howpsuzlyk", 'desc_os': "<b>🕵️ OSINT & Howpsuzlyk</b>\n\nIP barlag, ulanyjy gözleg, güýçli parol we saýtdan maglumat ýygnamak.",
- 'cat_md': "📥 Media & Guralar", 'desc_md': "<b>📥 Media & Guralar</b>\n\nAýdym/Wideo ýükle, Janly Ses (TTS), QR kod döret/oka, Suratdan PDF ýasa.",
- 'cat_ai': "🤖 AI & Dil", 'desc_ai': "<b>🤖 AI & Dil</b>\n\nSuny AI çat, Surat dörediji, terjime we OCR (Suratdan tekst okamak).",
- 'cat_pt': "🧰 Amaly Gurallar", 'desc_pt': "<b>🧰 Amaly Gurallar</b>\n\nBirlik öwüriji, Saýt barlagy, Kino gözleg we gülkünç/sitatalar.",
+ 'cat_w': "🌤 Howa & Täzelikler", 'desc_w': "<b>🌤 Howa & Täzelikler</b>\n\nHowa maglumaty, zilzilalar we IT täzelikleri.",
+ 'cat_os': "🕵️ OSINT & Howpsuzlyk", 'desc_os': "<b>🕵️ OSINT & Howpsuzlyk</b>\n\nIP barlag, ulanyjy gözleg, parol we saýtdan maglumat ýygnamak.",
+ 'cat_md': "📥 Media & Guralar", 'desc_md': "<b>📥 Media & Guralar</b>\n\nWideo/Aýdym ýükle, Janly Ses, QR kod, Suratdan PDF.",
+ 'cat_ai': "🤖 AI & Dil", 'desc_ai': "<b>🤖 AI & Dil</b>\n\nAI çat, Surat dörediji, terjime we OCR.",
+ 'cat_pt': "🧰 Amaly Gurallar", 'desc_pt': "<b>🧰 Amaly Gurallar</b>\n\nBirlik öwüriji, Saýt barlagy, Kino gözleg.",
+ 'cat_fun': "🎮 Oýun & Gözleg", 'desc_fun': "<b>🎮 Oýun & Gözleg</b>\n\nAýdym gözle, Kitap gözle we Kiberhowpsuzlyk oýny.",
  'cat_ps': "📝 Şahsy", 'desc_ps': "<b>📝 Şahsy</b>\n\nÝazgylary saklamak we wagtlaýyn ýatlatmalar.",
  
  'btn_weather': "🌤 Howa", 'btn_quake': "🌍 Zilzila", 'btn_news': "📰 Täzelikler",
  'btn_ip': "🌐 IP/Domen", 'btn_user': "🕵️ Ulanyjy", 'btn_pass': "🔐 Parol", 'btn_scrape': "🕸 Saýtdan Maglumat",
  'btn_dl': "📥 Ýükle", 'btn_tts': "🗣 Ses (TTS)", 'btn_qr': "📱 QR Döret", 'btn_qrread': "📷 QR Oka", 'btn_pdf': "📄 Suratdan PDF",
- 'btn_ai': "🤖 AI Çat", 'btn_img': "🎨 Surat Döret", 'btn_tr': "🌐 Terjime", 'btn_ocr': "📸 OCR (Surat->Tekst)",
- 'btn_conv': "📏 Birlik Öwür", 'btn_site': "📶 Saýt Barla", 'btn_movie': "🎬 Kino/Serial", 'btn_quote': "🎭 Gülkünç/Sitata",
+ 'btn_ai': "🤖 AI Çat", 'btn_img': "🎨 Surat Döret", 'btn_tr': "🌐 Terjime", 'btn_ocr': "📸 OCR",
+ 'btn_conv': "📏 Birlik Öwür", 'btn_site': "📶 Saýt Barla", 'btn_movie': "🎬 Kino/Serial",
+ 'btn_music': "🎵 Aýdym Gözle", 'btn_book': "📚 Kitap Gözle", 'btn_quiz': "🎮 Kiber Oýny",
  'btn_todo': "📝 Ýazgylar", 'btn_remind': "⏰ Ýatlatma", 'back': "⬅️ Yza", 'stop_ai': "🛑 AI-ny Bes Et",
  'btn_vid': "🎬 Wideo (HQ)", 'btn_aud': "🎵 Aýdym (MP3)",
  
@@ -58,29 +59,33 @@ T = {
  'ask_tts': "🗣 Seslendirmek üçin tekst iberiň:", 'ask_qr': "📱 QR üçin tekst/link iberiň:",
  'ask_qrread': "📷 Içinde QR kod bar suraty iberiň:", 'ask_pdf': "📄 PDF ýasamak üçin suratlary iberiň.\nDoly bolansoň /done_pdf ýazyň.",
  'ask_ai': "🤖 <b>AI Çat açyldy!</b>\n\nIslendik soragyňyzy ýazyp bilersiňiz.\nÇykmak üçin <code>/stop</code> ýazyň.",
- 'ask_img': "🎨 <b>Surat Dörediji</b>\n\nNähili surat döretmek isleýärsiňiz? Iňlis dilinde ýazyň (meselem: <i>a beautiful sunset</i>):",
+ 'ask_img': "🎨 <b>Surat Dörediji</b>\n\nNähili surat döretmek isleýärsiňiz? Iňlis dilinde ýazyň:",
  'ask_tr': "🌐 Terjime üçin tekst iberiň.\nFormat: <code>text</code> ýa-da <code>en ru text</code>",
  'ask_ocr': "📸 Içinde tekst bar suraty iberiň (OCR):",
  'ask_conv': "📏 Format: <code>san birlik -> birlik</code>\nMeselem: <code>10 km to miles</code>",
- 'ask_site': "📶 Barlamak üçin saýtyň adresini iberiň (meselem: google.com):",
- 'ask_movie': "🎬 Gözlemek üçin kino ýa-da serial adyny ýazyň (meselem: Inception):",
+ 'ask_site': "📶 Barlamak üçin saýtyň adresini iberiň:",
+ 'ask_movie': "🎬 Gözlemek üçin kino ýa-da serial adyny ýazyň:",
  'ask_scrape': "🕸 Maglumatyny çekmek isleýän saýtyňyzyň salgysyny (URL) iberiň:",
+ 'ask_music': "🎵 Gözlemek üçin aýdymyň ýa-da aýdymçynyň adyny ýazyň:",
+ 'ask_book': "📚 Gözlemek üçin kitabyň adyny ýazyň:",
  'ask_todo': "📝 Ýazgyňyzy iberiň:", 'ask_remind': "⏰ Format: <code>wagt tekst</code>\nMeselem: <code>10m Suw içmeli</code>",
  'load': "⏳ Biraz garaşyň...", 'notfound': "❌ Tapylmady!", 'err': "❌ Ýalňyşlyk: {e}",
  'ask_format': "Nähili görnüşde ýüklemek isleýärsiňiz?",
  'dl_wait': "⏳ Ýüklenýär... (Ulylygyna bagly, biraz garaşyň)", 'dl_err': "❌ Ýüklemek başartmady (TikTok ýapyk bolmagy mümkin ýa-da 50MB-dan uly)."
 },
 'ru': {
- 'menu': "🤖 <b>Главное меню</b>\n\nВыберите раздел:", 'cat_w': "🌤 Погода и Новости", 'desc_w': "<b>🌤 Погода и Новости</b>\n\nПогода на 12 часов, землетрясения и IT-новости.",
- 'cat_os': "🕵️ OSINT и Безопасность", 'desc_os': "<b>🕵️ OSINT и Безопасность</b>\n\nIP, юзернейм, пароль и парсинг сайтов.",
- 'cat_md': "📥 Медиа и Инструменты", 'desc_md': "<b>📥 Медиа и Инструменты</b>\n\nСкачивание, TTS, QR и фото в PDF.",
- 'cat_ai': "🤖 ИИ и Язык", 'desc_ai': "<b>🤖 ИИ и Язык</b>\n\nИИ-чат, генератор картинок, перевод и OCR.",
- 'cat_pt': "🧰 Полезные инструменты", 'desc_pt': "<b>🧰 Полезные инструменты</b>\n\nКонвертер, проверка сайта, поиск фильмов и цитаты.",
- 'cat_ps': "📝 Личное", 'desc_ps': "<b>📝 Личное</b>\n\nЗаметки и напоминания.",
+ 'menu': "🤖 <b>Главное меню</b>\n\nВыберите раздел:", 'cat_w': "🌤 Погода и Новости", 'desc_w': "<b>🌤 Погода и Новости</b>",
+ 'cat_os': "🕵️ OSINT и Безопасность", 'desc_os': "<b>🕵️ OSINT и Безопасность</b>",
+ 'cat_md': "📥 Медиа и Инструменты", 'desc_md': "<b>📥 Медиа и Инструменты</b>",
+ 'cat_ai': "🤖 ИИ и Язык", 'desc_ai': "<b>🤖 ИИ и Язык</b>",
+ 'cat_pt': "🧰 Полезные инструменты", 'desc_pt': "<b>🧰 Полезные инструменты</b>",
+ 'cat_fun': "🎮 Игры и Поиск", 'desc_fun': "<b>🎮 Игры и Поиск</b>\n\nПоиск музыки, книг и игра по Кибербезопасности.",
+ 'cat_ps': "📝 Личное", 'desc_ps': "<b>📝 Личное</b>",
  'btn_weather': "🌤 Погода", 'btn_quake': "🌍 Землетрясения", 'btn_news': "📰 Новости", 'btn_ip': "🌐 IP/Домен", 'btn_user': "🕵️ Юзернейм", 'btn_pass': "🔐 Пароль", 'btn_scrape': "🕸 Парсинг сайта",
  'btn_dl': "📥 Скачать", 'btn_tts': "🗣 Озвучка", 'btn_qr': "📱 QR Создать", 'btn_qrread': "📷 QR Читать", 'btn_pdf': "📄 Фото в PDF",
- 'btn_ai': "🤖 ИИ Чат", 'btn_img': "🎨 Создать фото", 'btn_tr': "🌐 Перевод", 'btn_ocr': "📸 OCR (Фото->Текст)",
- 'btn_conv': "📏 Конвертер", 'btn_site': "📶 Проверка сайта", 'btn_movie': "🎬 Кино/Сериал", 'btn_quote': "🎭 Цитаты",
+ 'btn_ai': "🤖 ИИ Чат", 'btn_img': "🎨 Создать фото", 'btn_tr': "🌐 Перевод", 'btn_ocr': "📸 OCR",
+ 'btn_conv': "📏 Конвертер", 'btn_site': "📶 Проверка сайта", 'btn_movie': "🎬 Кино/Сериал",
+ 'btn_music': "🎵 Поиск Музыки", 'btn_book': "📚 Поиск Книг", 'btn_quiz': "🎮 Кибер Игра",
  'btn_todo': "📝 Заметки", 'btn_remind': "⏰ Напоминание", 'back': "⬅️ Назад", 'stop_ai': "🛑 Выйти из ИИ",
  'btn_vid': "🎬 Видео (HQ)", 'btn_aud': "🎵 Аудио (MP3)",
  'ask_city': "🏙 Название города:", 'ask_ip': "🌐 IP или домен:", 'ask_user': "👤 Юзернейм:", 'ask_pass': "🔐 Длина пароля:", 'ask_dl': "📥 Отправьте ссылку (URL):",
@@ -89,9 +94,10 @@ T = {
  'ask_tr': "🌐 Текст для перевода:", 'ask_ocr': "📸 Отправьте фото с текстом:", 
  'ask_conv': "📏 Формат: <code>число единица -> единица</code>", 'ask_site': "📶 Отправьте адрес сайта:", 
  'ask_movie': "🎬 Введите название фильма:", 'ask_scrape': "🕸 Отправьте URL сайта для парсинга:",
+ 'ask_music': "🎵 Введите название песни или исполнителя:", 'ask_book': "📚 Введите название книги:",
  'ask_todo': "📝 Заметка:", 'ask_remind': "⏰ Формат: <code>время текст</code>",
  'load': "⏳ Загрузка...", 'notfound': "❌ Не найдено!", 'err': "❌ Ошибка: {e}",
- 'ask_format': "В каком формате скачать?", 'dl_wait': "⏳ Скачивание... (Зависит от размера)", 'dl_err': "❌ Не удалось скачать (TikTok заблокирован или >50MB)."
+ 'ask_format': "В каком формате скачать?", 'dl_wait': "⏳ Скачивание...", 'dl_err': "❌ Не удалось скачать."
 },
 'en': {
  'menu': "🤖 <b>Main Menu</b>\n\nSelect a category:", 'cat_w': "🌤 Weather & News", 'desc_w': "<b>🌤 Weather & News</b>",
@@ -99,11 +105,13 @@ T = {
  'cat_md': "📥 Media & Tools", 'desc_md': "<b>📥 Media & Tools</b>",
  'cat_ai': "🤖 AI & Language", 'desc_ai': "<b>🤖 AI & Language</b>",
  'cat_pt': "🧰 Practical Tools", 'desc_pt': "<b>🧰 Practical Tools</b>",
+ 'cat_fun': "🎮 Games & Search", 'desc_fun': "<b>🎮 Games & Search</b>\n\nMusic search, Book search and Cyber Quiz.",
  'cat_ps': "📝 Personal", 'desc_ps': "<b>📝 Personal</b>",
  'btn_weather': "🌤 Weather", 'btn_quake': "🌍 Earthquakes", 'btn_news': "📰 News", 'btn_ip': "🌐 IP/Domain", 'btn_user': "🕵️ Username", 'btn_pass': "🔐 Password", 'btn_scrape': "🕸 Web Scraper",
  'btn_dl': "📥 Download", 'btn_tts': "🗣 TTS", 'btn_qr': "📱 Create QR", 'btn_qrread': "📷 Read QR", 'btn_pdf': "📄 Image to PDF",
  'btn_ai': "🤖 AI Chat", 'btn_img': "🎨 Gen Image", 'btn_tr': "🌐 Translate", 'btn_ocr': "📸 OCR",
- 'btn_conv': "📏 Converter", 'btn_site': "📶 Site Check", 'btn_movie': "🎬 Movie/Series", 'btn_quote': "🎭 Quotes",
+ 'btn_conv': "📏 Converter", 'btn_site': "📶 Site Check", 'btn_movie': "🎬 Movie/Series",
+ 'btn_music': "🎵 Music Search", 'btn_book': "📚 Book Search", 'btn_quiz': "🎮 Cyber Quiz",
  'btn_todo': "📝 Notes", 'btn_remind': "⏰ Reminder", 'back': "⬅️ Back", 'stop_ai': "🛑 Exit AI",
  'btn_vid': "🎬 Video (HQ)", 'btn_aud': "🎵 Audio (MP3)",
  'ask_city': "🏙 City name:", 'ask_ip': "🌐 IP or domain:", 'ask_user': "👤 Username:", 'ask_pass': "🔐 Password length:", 'ask_dl': "📥 Send URL:",
@@ -112,9 +120,10 @@ T = {
  'ask_tr': "🌐 Text to translate:", 'ask_ocr': "📸 Send a photo with text:", 
  'ask_conv': "📏 Format: <code>number unit -> unit</code>", 'ask_site': "📶 Send website:", 
  'ask_movie': "🎬 Enter movie name:", 'ask_scrape': "🕸 Send website URL to scrape:",
+ 'ask_music': "🎵 Enter song or artist name:", 'ask_book': "📚 Enter book name:",
  'ask_todo': "📝 Note:", 'ask_remind': "⏰ Format: <code>time text</code>",
  'load': "⏳ Loading...", 'notfound': "❌ Not found!", 'err': "❌ Error: {e}",
- 'ask_format': "Choose format to download:", 'dl_wait': "⏳ Downloading... (Depends on size)", 'dl_err': "❌ Download failed (TikTok blocked or >50MB)."
+ 'ask_format': "Choose format to download:", 'dl_wait': "⏳ Downloading...", 'dl_err': "❌ Download failed."
 },
 'tr': {
  'menu': "🤖 <b>Ana Menü</b>", 'cat_w': "🌤 Hava & Haberler", 'desc_w': "<b>🌤 Hava & Haberler</b>",
@@ -122,19 +131,24 @@ T = {
  'cat_md': "📥 Medya & Araçlar", 'desc_md': "<b>📥 Medya & Araçlar</b>",
  'cat_ai': "🤖 AI & Dil", 'desc_ai': "<b>🤖 AI & Dil</b>",
  'cat_pt': "🧰 Pratik Araçlar", 'desc_pt': "<b>🧰 Pratik Araçlar</b>",
+ 'cat_fun': "🎮 Oyun & Arama", 'desc_fun': "<b>🎮 Oyun & Arama</b>\n\nMüzik arama, Kitap arama ve Siber Oyun.",
  'cat_ps': "📝 Kişisel", 'desc_ps': "<b>📝 Kişisel</b>",
  'btn_weather': "🌤 Hava", 'btn_quake': "🌍 Depremler", 'btn_news': "📰 Haberler", 'btn_ip': "🌐 IP", 'btn_user': "🕵️ Kullanıcı", 'btn_pass': "🔐 Şifre", 'btn_scrape': "🕸 Kazıma",
  'btn_dl': "📥 İndir", 'btn_tts': "🗣 Seslendir", 'btn_qr': "📱 QR Oluştur", 'btn_qrread': "📷 QR Oku", 'btn_pdf': "📄 PDF",
  'btn_ai': "🤖 AI Sohbet", 'btn_img': "🎨 Resim Oluştur", 'btn_tr': "🌐 Çeviri", 'btn_ocr': "📸 OCR",
- 'btn_conv': "📏 Çevir", 'btn_site': "📶 Site Kontrol", 'btn_movie': "🎬 Film/Dizi", 'btn_quote': "🎭 Alıntılar",
+ 'btn_conv': "📏 Çevir", 'btn_site': "📶 Site Kontrol", 'btn_movie': "🎬 Film/Dizi",
+ 'btn_music': "🎵 Müzik Ara", 'btn_book': "📚 Kitap Ara", 'btn_quiz': "🎮 Siber Oyun",
  'btn_todo': "📝 Notlar", 'btn_remind': "⏰ Hatırlatıcı", 'back': "⬅️ Geri", 'stop_ai': "🛑 Çık",
  'btn_vid': "🎬 Video (HQ)", 'btn_aud': "🎵 Ses (MP3)",
  'ask_city': "🏙 Şehir:", 'ask_ip': "🌐 IP/Domain:", 'ask_user': "👤 Kullanıcı:", 'ask_pass': "🔐 Uzunluk:", 'ask_dl': "📥 URL:",
  'ask_tts': "🗣 Metin:", 'ask_qr': "📱 Metin/Link:", 'ask_qrread': "📷 QR Fotoğrafı:", 'ask_pdf': "📄 Resimleri gönderin.\nSonra /done_pdf.",
  'ask_ai': "🤖 <b>AI AÇIK!</b>", 'ask_img': "🎨 <b>Resim Oluşturucu</b>",
- 'ask_tr': "🌐 Metin:", 'ask_ocr': "📸 Fotoğraf:", 'ask_conv': "📏 Format:", 'ask_site': "📶 Site:", 'ask_movie': "🎬 Film:", 'ask_scrape': "🕸 URL:", 'ask_todo': "📝 Not:", 'ask_remind': "⏰ Format:",
+ 'ask_tr': "🌐 Metin:", 'ask_ocr': "📸 Fotoğraf:", 'ask_conv': "📏 Format:", 'ask_site': "📶 Site:", 
+ 'ask_movie': "🎬 Film:", 'ask_scrape': "🕸 URL:", 
+ 'ask_music': "🎵 Şarkı veya sanatçı adı:", 'ask_book': "📚 Kitap adı:",
+ 'ask_todo': "📝 Not:", 'ask_remind': "⏰ Format:",
  'load': "⏳ Yükleniyor...", 'notfound': "❌ Bulunamadı!", 'err': "❌ Hata: {e}",
- 'ask_format': "Hangi formatta indirilsin?", 'dl_wait': "⏳ İndiriliyor...", 'dl_err': "❌ İndirilemedi (TikTok engelledi veya >50MB)."
+ 'ask_format': "Hangi formatta indirilsin?", 'dl_wait': "⏳ İndiriliyor...", 'dl_err': "❌ İndirilemedi."
 },
 'de': {
  'menu': "🤖 <b>Hauptmenü</b>", 'cat_w': "🌤 Wetter", 'desc_w': "<b>🌤 Wetter</b>",
@@ -142,19 +156,24 @@ T = {
  'cat_md': "📥 Medien", 'desc_md': "<b>📥 Medien</b>",
  'cat_ai': "🤖 KI", 'desc_ai': "<b>🤖 KI</b>",
  'cat_pt': "🧰 Tools", 'desc_pt': "<b>🧰 Tools</b>",
+ 'cat_fun': "🎮 Spiele", 'desc_fun': "<b>🎮 Spiele</b>\n\nMusiksuche, Buchsuche und Cyber-Quiz.",
  'cat_ps': "📝 Notizen", 'desc_ps': "<b>📝 Notizen</b>",
  'btn_weather': "🌤 Wetter", 'btn_quake': "🌍 Erdbeben", 'btn_news': "📰 News", 'btn_ip': "🌐 IP", 'btn_user': "🕵️ Benutzer", 'btn_pass': "🔐 Passwort", 'btn_scrape': "🕸 Scraper",
  'btn_dl': "📥 Download", 'btn_tts': "🗣 TTS", 'btn_qr': "📱 QR", 'btn_qrread': "📷 QR lesen", 'btn_pdf': "📄 PDF",
  'btn_ai': "🤖 Chat", 'btn_img': "🎨 Bild", 'btn_tr': "🌐 Übersetzen", 'btn_ocr': "📸 OCR",
- 'btn_conv': "📏 Umrechner", 'btn_site': "📶 Check", 'btn_movie': "🎬 Film", 'btn_quote': "🎭 Zitate",
+ 'btn_conv': "📏 Umrechner", 'btn_site': "📶 Check", 'btn_movie': "🎬 Film",
+ 'btn_music': "🎵 Musiksuche", 'btn_book': "📚 Buchsuche", 'btn_quiz': "🎮 Cyber Quiz",
  'btn_todo': "📝 Notizen", 'btn_remind': "⏰ Erinnerung", 'back': "⬅️ Zurück", 'stop_ai': "🛑 KI beenden",
  'btn_vid': "🎬 Video (HQ)", 'btn_aud': "🎵 Audio (MP3)",
  'ask_city': "🏙 Stadt:", 'ask_ip': "🌐 IP:", 'ask_user': "👤 Benutzer:", 'ask_pass': "🔐 Länge:", 'ask_dl': "📥 URL:",
  'ask_tts': "🗣 Text:", 'ask_qr': "📱 Text:", 'ask_qrread': "📷 QR Foto:", 'ask_pdf': "📄 Bilder senden.\nDann /done_pdf.",
  'ask_ai': "🤖 <b>KI AN!</b>", 'ask_img': "🎨 <b>Bildgenerator</b>",
- 'ask_tr': "🌐 Text:", 'ask_ocr': "📸 Foto:", 'ask_conv': "📏 Format:", 'ask_site': "📶 Website:", 'ask_movie': "🎬 Film:", 'ask_scrape': "🕸 URL:", 'ask_todo': "📝 Notiz:", 'ask_remind': "⏰ Format:",
+ 'ask_tr': "🌐 Text:", 'ask_ocr': "📸 Foto:", 'ask_conv': "📏 Format:", 'ask_site': "📶 Website:", 
+ 'ask_movie': "🎬 Film:", 'ask_scrape': "🕸 URL:", 
+ 'ask_music': "🎵 Lied oder Künstler:", 'ask_book': "📚 Buchname:",
+ 'ask_todo': "📝 Notiz:", 'ask_remind': "⏰ Format:",
  'load': "⏳ Laden...", 'notfound': "❌ Nicht gefunden!", 'err': "❌ Fehler: {e}",
- 'ask_format': "Format wählen:", 'dl_wait': "⏳ Wird heruntergeladen...", 'dl_err': "❌ Fehlgeschlagen (TikTok blockiert oder >50MB)."
+ 'ask_format': "Format wählen:", 'dl_wait': "⏳ Wird heruntergeladen...", 'dl_err': "❌ Fehlgeschlagen."
 },
 }
 
@@ -171,6 +190,7 @@ def main_kb(cid):
         types.InlineKeyboardButton(tr(cid,'cat_md'), callback_data="cat_md"),
         types.InlineKeyboardButton(tr(cid,'cat_ai'), callback_data="cat_ai"),
         types.InlineKeyboardButton(tr(cid,'cat_pt'), callback_data="cat_pt"),
+        types.InlineKeyboardButton(tr(cid,'cat_fun'), callback_data="cat_fun"),
         types.InlineKeyboardButton(tr(cid,'cat_ps'), callback_data="cat_ps"),
         types.InlineKeyboardButton("🌐 Hacker Tools (Web)", url=SITE_URL),
         types.InlineKeyboardButton("🌍 Dil / Language", callback_data="lang_menu")
@@ -202,8 +222,11 @@ def cat_kb(cid, cat):
     elif cat == 'pt':
         kb.add(types.InlineKeyboardButton(tr(cid,'btn_conv'), callback_data="act_conv"),
                types.InlineKeyboardButton(tr(cid,'btn_site'), callback_data="act_site"),
-               types.InlineKeyboardButton(tr(cid,'btn_movie'), callback_data="act_movie"),
-               types.InlineKeyboardButton(tr(cid,'btn_quote'), callback_data="act_quote"))
+               types.InlineKeyboardButton(tr(cid,'btn_movie'), callback_data="act_movie"))
+    elif cat == 'fun':
+        kb.add(types.InlineKeyboardButton(tr(cid,'btn_music'), callback_data="act_music"),
+               types.InlineKeyboardButton(tr(cid,'btn_book'), callback_data="act_book"),
+               types.InlineKeyboardButton(tr(cid,'btn_quiz'), callback_data="act_quiz"))
     elif cat == 'ps':
         kb.add(types.InlineKeyboardButton(tr(cid,'btn_todo'), callback_data="act_todo"),
                types.InlineKeyboardButton(tr(cid,'btn_remind'), callback_data="act_remind"))
@@ -225,7 +248,6 @@ def dl_format_kb(cid, url):
     kb = types.InlineKeyboardMarkup(row_width=2)
     short_id = uuid.uuid4().hex[:10] 
     url_cache[short_id] = url
-    
     kb.add(types.InlineKeyboardButton(tr(cid,'btn_vid'), callback_data=f"dl_vid_{short_id}"),
            types.InlineKeyboardButton(tr(cid,'btn_aud'), callback_data=f"dl_aud_{short_id}"))
     return kb
@@ -265,7 +287,7 @@ def f_ip(q):
         except: ip = q
         r = requests.get(f"http://ip-api.com/json/{ip}?fields=status,country,city,isp,org,timezone,query", timeout=10).json()
         if r.get("status") != "success": return None
-        return f"🌐 <b>{r.get('query')}</b>\n\n🏳️ <b>{r.get('country','—')}</b>\n🏙 <b>{r.get('city','—')}</b>\n📡 <b>{r.get('isp','—')}</b>\n⏰ <b>{r.get('timezone','—')}</b>"
+        return f"🌐 <b>{r.get('query')}</b>\n\n🏳️ <b>{r.get('country','—')}</b>\n🏙 <b>{r.get('city','—')}</b>\n📡 <b>{r.get('isp','—')}</b>"
     except Exception as e: return f"❌ {e}"
 
 def f_username(u):
@@ -343,14 +365,8 @@ def f_sitecheck(url):
     try:
         r = requests.get(url, timeout=10)
         em = "🟢" if r.status_code == 200 else "🟠"
-        return f"📶 <b>Saýt Barlagy</b>\n\n{em} <b>{url}</b>\nStatus kody: <b>{r.status_code}</b>\nWagty: <b>{r.elapsed.total_seconds():.2f} sek</b>"
+        return f"📶 <b>Saýt Barlagy</b>\n\n{em} <b>{url}</b>\nStatus kody: <b>{r.status_code}</b>"
     except Exception as e: return f"🔴 <b>{url}</b> açylýanok."
-
-def f_quote():
-    try:
-        r = requests.get("https://zenquotes.io/api/random", timeout=10).json()[0]
-        return f"🎭 <b>Sitata:</b>\n\n<i>\"{r['q']}\"</i>\n\n— <b>{r['a']}</b>"
-    except: return "❌ Sitatany alyp bolmady."
 
 def f_ai(prompt):
     try:
@@ -436,6 +452,55 @@ def f_download(url, cid, mode='audio'):
     except Exception as e: 
         return {'error': str(e)}
 
+# TÄZE: Aýdym Gözleýji
+def f_music_search(query, cid):
+    try:
+        ydl_opts = {'format': 'bestaudio/best', 'quiet': True, 'default_search': 'ytsearch1'}
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(query, download=False)
+            if not info or 'entries' not in info or not info['entries']: return None
+            video_url = info['entries'][0]['webpage_url']
+            title = info['entries'][0]['title']
+        
+        # Soňra şol tapylan URL-i ýükleýäris
+        res = f_download(video_url, cid, 'audio')
+        if res.get('error'): return {'error': res['error']}
+        res['title'] = title # YouTube-dan alnan hakyky at
+        return res
+    except Exception as e: return {'error': str(e)}
+
+# TÄZE: Kitap Gözleýji
+def f_book_search(query):
+    try:
+        url = f"https://openlibrary.org/search.json?q={requests.utils.quote(query)}&limit=3"
+        r = requests.get(url, timeout=15).json()
+        docs = r.get('docs', [])
+        if not docs: return None
+        
+        out = [f"📚 <b>'{query}' boýunça netijeler:</b>\n"]
+        for doc in docs:
+            title = doc.get('title', 'Näbelli')
+            author = doc.get('author_name', ['Näbelli'])[0]
+            year = doc.get('first_publish_year', '—')
+            key = doc.get('key', '')
+            out.append(f"📖 <b>{title}</b>\n✍️ {author} ({year})\n🔗 <a href='https://openlibrary.org{key}'>Maglumat</a>\n")
+        return "\n".join(out)
+    except: return None
+
+# TÄZE: Kiberhowpsuzlyk Oýny
+quiz_data = [
+    {"q": "Haýsy parol iň howpsuz?", "opts": ["12345678", "admin", "P@ssw0rd!2024", "qwerty"], "ans": 2},
+    {"q": "SQL näme üçin ulanylýar?", "opts": ["Surat döretmek", "Maglumat bazasy", "Wideo görkezmek", "Ses ýazmak"], "ans": 1},
+    {"q": "XSS hüjümi nämä gönükdirilen?", "opts": ["Serwere", "Ulanyjynyň brauzerine", "Tor toryna", "Wi-Fi-yna"], "ans": 1}
+]
+
+def get_quiz_kb(q_idx):
+    kb = types.InlineKeyboardMarkup(row_width=1)
+    q = quiz_data[q_idx]
+    for i, opt in enumerate(q['opts']):
+        kb.add(types.InlineKeyboardButton(opt, callback_data=f"quiz_{q_idx}_{i}"))
+    return kb
+
 async def generate_tts_async(text, voice):
     communicate = edge_tts.Communicate(text, voice)
     file_path = f"tts_{int(time.time())}.mp3"
@@ -504,6 +569,17 @@ def handle_callback(call):
     cid = call.message.chat.id
     data = call.data
     
+    if data.startswith("quiz_"):
+        parts = data.split("_")
+        q_idx = int(parts[1])
+        ans_idx = int(parts[2])
+        q = quiz_data[q_idx]
+        if ans_idx == q['ans']:
+            bot.answer_callback_query(call.id, "✅ Dogry jogap!", show_alert=True)
+        else:
+            bot.answer_callback_query(call.id, "❌ Ýalňyş! Täzeden synanyşyň.", show_alert=True)
+        return
+
     if data.startswith("dl_vid_") or data.startswith("dl_aud_"):
         mode = 'video' if data.startswith("dl_vid_") else 'audio'
         short_id = data.replace("dl_vid_", "").replace("dl_aud_", "")
@@ -556,16 +632,17 @@ def handle_callback(call):
         act = data.replace("act_", "")
         if act == "quake": bot.send_chat_action(cid, 'typing'); bot.send_message(cid, f_earthquake())
         elif act == "news": bot.send_chat_action(cid, 'typing'); bot.send_message(cid, f_news())
-        elif act == "quote": bot.send_chat_action(cid, 'typing'); bot.send_message(cid, f_quote())
         elif act == "ai":
             user_state[cid] = 'ai'
             bot.send_message(cid, tr(cid, 'ask_ai'), reply_markup=stop_ai_kb(cid))
         elif act == "pdf":
             user_state[cid] = {'type': 'pdf', 'images': []}
             bot.send_message(cid, tr(cid, 'ask_pdf'))
+        elif act == "quiz":
+            bot.send_message(cid, f"🎮 <b>Kiberhowpsuzlyk Soragy 1:</b>\n\n{quiz_data[0]['q']}", reply_markup=get_quiz_kb(0))
         else:
             user_state[cid] = act
-            ask_map = {'weather':'ask_city','ip':'ask_ip','user':'ask_user','pass':'ask_pass','dl':'ask_dl','tts':'ask_tts','qr':'ask_qr','qrread':'ask_qrread','ocr':'ask_ocr','img':'ask_img','tr':'ask_tr','conv':'ask_conv','site':'ask_site','movie':'ask_movie','scrape':'ask_scrape','todo':'ask_todo','remind':'ask_remind'}
+            ask_map = {'weather':'ask_city','ip':'ask_ip','user':'ask_user','pass':'ask_pass','dl':'ask_dl','tts':'ask_tts','qr':'ask_qr','qrread':'ask_qrread','ocr':'ask_ocr','img':'ask_img','tr':'ask_tr','conv':'ask_conv','site':'ask_site','movie':'ask_movie','scrape':'ask_scrape','todo':'ask_todo','remind':'ask_remind', 'music':'ask_music', 'book':'ask_book'}
             bot.send_message(cid, tr(cid, ask_map.get(act, 'load')))
 
 @bot.message_handler(commands=['done'])
@@ -605,6 +682,22 @@ def on_text(m):
     elif st == 'dl':
         user_state.pop(cid, None)
         bot.reply_to(m, tr(cid, 'ask_format'), reply_markup=dl_format_kb(cid, txt))
+    elif st == 'music':
+        user_state.pop(cid, None); bot.send_chat_action(cid, 'record_audio')
+        msg = bot.reply_to(m, tr(cid, 'load'))
+        res = f_music_search(txt, cid)
+        if res and not res.get('error'):
+            try:
+                with open(res['file'], 'rb') as f: bot.send_audio(cid, f, title=res['title'])
+                bot.delete_message(cid, msg.message_id)
+            except Exception as e: bot.edit_message_text(f"❌ {e}", cid, msg.message_id)
+            finally:
+                if os.path.exists(res.get('file', '')): os.remove(res['file'])
+        else: bot.edit_message_text(f"❌ Aýdym tapylmady.", cid, msg.message_id)
+    elif st == 'book':
+        user_state.pop(cid, None); bot.send_chat_action(cid, 'typing')
+        res = f_book_search(txt)
+        bot.reply_to(m, res if res else tr(cid,'notfound'), disable_web_page_preview=True)
     elif st == 'tts':
         user_state.pop(cid, None); bot.send_chat_action(cid,'record_voice')
         path = f_tts(txt, get_lang(cid))
@@ -638,11 +731,21 @@ def on_text(m):
     elif st == 'remind': user_state.pop(cid, None); bot.reply_to(m, f_add_reminder(cid, txt))
     else: bot.send_chat_action(cid, 'typing'); bot.reply_to(m, f_ai(txt) + "\n\n<i>(Göni AI ýazýarsyňyz. Menýu üçin /menu ýazyň)</i>")
 
+# ---------- BOTY DURMAGYNYŇ ÖŇÜNI ALMAK (409 FIX) ----------
 if __name__ == '__main__':
-    print("🤖 Bot işledi... (Final Version)")
+    print("🤖 Bot işledi... (Final Version + 5 New Features)")
+    
+    # 409 Conflict (Restart) hatasyny düýpden düzmek üçin webhook-y pozýarys
+    try:
+        bot.remove_webhook()
+        time.sleep(2)
+    except Exception as e:
+        print(f"Webhook pozmakda ýalňyşlyk: {e}")
+
     while True:
         try: 
-            bot.infinity_polling(timeout=10, long_polling_timeout=5)
+            # allowed_updates goşuldy (409-yň öňüni almak üçin)
+            bot.infinity_polling(timeout=10, long_polling_timeout=5, allowed_updates=['message', 'callback_query'])
         except Exception as e: 
-            print(f"⚠️ Baglanyşyk ýalňyşlygy: {e}")
+            print(f"⚠️ Baglanyşyk ýalňyşlygy (409 Restart): {e}")
             time.sleep(5)
