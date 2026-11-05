@@ -1,7 +1,1 @@
-pyTelegramBotAPI
-requests
-qrcode[pil]
-Pillow
-edge-tts
-yt-dlp[default,curl-cffi]
-beautifulsoup4
+
