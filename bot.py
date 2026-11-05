@@ -8,7 +8,6 @@ from PIL import Image
 from bs4 import BeautifulSoup
 
 # ---------- TOKEN ----------
-# Token Render paneline (Environment bölümine) goýulýar
 TOKEN = os.environ.get("BOT_TOKEN")
 bot = telebot.TeleBot(TOKEN, parse_mode="HTML")
 
@@ -69,7 +68,7 @@ T = {
  'ask_todo': "📝 Ýazgyňyzy iberiň:", 'ask_remind': "⏰ Format: <code>wagt tekst</code>\nMeselem: <code>10m Suw içmeli</code>",
  'load': "⏳ Biraz garaşyň...", 'notfound': "❌ Tapylmady!", 'err': "❌ Ýalňyşlyk: {e}",
  'ask_format': "Nähili görnüşde ýüklemek isleýärsiňiz?",
- 'dl_wait': "⏳ Ýüklenýär... (Ulylygyna bagly, biraz garaşyň)", 'dl_err': "❌ Ýüklemek başartmady (Ýa-da 50MB-dan uly)."
+ 'dl_wait': "⏳ Ýüklenýär... (Ulylygyna bagly, biraz garaşyň)", 'dl_err': "❌ Ýüklemek başartmady (TikTok ýapyk bolmagy mümkin ýa-da 50MB-dan uly)."
 },
 'ru': {
  'menu': "🤖 <b>Главное меню</b>\n\nВыберите раздел:", 'cat_w': "🌤 Погода и Новости", 'desc_w': "<b>🌤 Погода и Новости</b>\n\nПогода на 12 часов, землетрясения и IT-новости.",
@@ -92,7 +91,7 @@ T = {
  'ask_movie': "🎬 Введите название фильма:", 'ask_scrape': "🕸 Отправьте URL сайта для парсинга:",
  'ask_todo': "📝 Заметка:", 'ask_remind': "⏰ Формат: <code>время текст</code>",
  'load': "⏳ Загрузка...", 'notfound': "❌ Не найдено!", 'err': "❌ Ошибка: {e}",
- 'ask_format': "В каком формате скачать?", 'dl_wait': "⏳ Скачивание... (Зависит от размера)", 'dl_err': "❌ Не удалось скачать (или больше 50MB)."
+ 'ask_format': "В каком формате скачать?", 'dl_wait': "⏳ Скачивание... (Зависит от размера)", 'dl_err': "❌ Не удалось скачать (TikTok заблокирован или >50MB)."
 },
 'en': {
  'menu': "🤖 <b>Main Menu</b>\n\nSelect a category:", 'cat_w': "🌤 Weather & News", 'desc_w': "<b>🌤 Weather & News</b>",
@@ -115,7 +114,7 @@ T = {
  'ask_movie': "🎬 Enter movie name:", 'ask_scrape': "🕸 Send website URL to scrape:",
  'ask_todo': "📝 Note:", 'ask_remind': "⏰ Format: <code>time text</code>",
  'load': "⏳ Loading...", 'notfound': "❌ Not found!", 'err': "❌ Error: {e}",
- 'ask_format': "Choose format to download:", 'dl_wait': "⏳ Downloading... (Depends on size)", 'dl_err': "❌ Download failed (or >50MB)."
+ 'ask_format': "Choose format to download:", 'dl_wait': "⏳ Downloading... (Depends on size)", 'dl_err': "❌ Download failed (TikTok blocked or >50MB)."
 },
 'tr': {
  'menu': "🤖 <b>Ana Menü</b>", 'cat_w': "🌤 Hava & Haberler", 'desc_w': "<b>🌤 Hava & Haberler</b>",
@@ -135,7 +134,7 @@ T = {
  'ask_ai': "🤖 <b>AI AÇIK!</b>", 'ask_img': "🎨 <b>Resim Oluşturucu</b>",
  'ask_tr': "🌐 Metin:", 'ask_ocr': "📸 Fotoğraf:", 'ask_conv': "📏 Format:", 'ask_site': "📶 Site:", 'ask_movie': "🎬 Film:", 'ask_scrape': "🕸 URL:", 'ask_todo': "📝 Not:", 'ask_remind': "⏰ Format:",
  'load': "⏳ Yükleniyor...", 'notfound': "❌ Bulunamadı!", 'err': "❌ Hata: {e}",
- 'ask_format': "Hangi formatta indirilsin?", 'dl_wait': "⏳ İndiriliyor...", 'dl_err': "❌ İndirilemedi."
+ 'ask_format': "Hangi formatta indirilsin?", 'dl_wait': "⏳ İndiriliyor...", 'dl_err': "❌ İndirilemedi (TikTok engelledi veya >50MB)."
 },
 'de': {
  'menu': "🤖 <b>Hauptmenü</b>", 'cat_w': "🌤 Wetter", 'desc_w': "<b>🌤 Wetter</b>",
@@ -155,7 +154,7 @@ T = {
  'ask_ai': "🤖 <b>KI AN!</b>", 'ask_img': "🎨 <b>Bildgenerator</b>",
  'ask_tr': "🌐 Text:", 'ask_ocr': "📸 Foto:", 'ask_conv': "📏 Format:", 'ask_site': "📶 Website:", 'ask_movie': "🎬 Film:", 'ask_scrape': "🕸 URL:", 'ask_todo': "📝 Notiz:", 'ask_remind': "⏰ Format:",
  'load': "⏳ Laden...", 'notfound': "❌ Nicht gefunden!", 'err': "❌ Fehler: {e}",
- 'ask_format': "Format wählen:", 'dl_wait': "⏳ Wird heruntergeladen...", 'dl_err': "❌ Fehlgeschlagen."
+ 'ask_format': "Format wählen:", 'dl_wait': "⏳ Wird heruntergeladen...", 'dl_err': "❌ Fehlgeschlagen (TikTok blockiert oder >50MB)."
 },
 }
 
@@ -406,31 +405,36 @@ def f_todo_list(cid):
 
 def f_download(url, cid, mode='audio'):
     try:
+        ydl_opts = {
+            'quiet': True,
+            'no_warnings': True,
+            'impersonate': 'chrome',
+            'outtmpl': f'./{cid}_dl_%(id)s.%(ext)s',
+            'noplaylist': True,
+        }
         if mode == 'audio':
-            ydl_opts = {
-                'format': 'bestaudio/best', 
-                'outtmpl': f'./{cid}_dl_%(id)s.%(ext)s', 
-                'noplaylist': True, 
-                'quiet': True, 
-                'impersonate': 'chrome',
-                'postprocessors': [{'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': '192'}]
-            }
-        else: # Video HQ
-            ydl_opts = {
-                'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
-                'outtmpl': f'./{cid}_dl_%(id)s.%(ext)s', 
-                'noplaylist': True, 
-                'quiet': True,
-                'impersonate': 'chrome',
-            }
-            
+            ydl_opts['format'] = 'bestaudio/best'
+            ydl_opts['postprocessors'] = [{'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': '192'}]
+        else:
+            ydl_opts['format'] = 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'
+
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=True)
+            if not info: return {'error': "Maglumat alyp bolmady."}
+            
             file_path = ydl.prepare_filename(info)
             if mode == 'audio':
-                file_path = file_path.replace('.webm', '.mp3').replace('.m4a', '.mp3')
-            return {'file': file_path, 'title': info.get('title', 'File'), 'mode': mode}
-    except Exception as e: return {'error': str(e)}
+                for ext in ['.webm', '.m4a', '.mp4']:
+                    if file_path.endswith(ext):
+                        file_path = file_path.replace(ext, '.mp3')
+                        break
+            
+            if not os.path.exists(file_path):
+                return {'error': "Faýl göçürip alynmady (Format näsazlygy)."}
+
+            return {'file': file_path, 'title': info.get('title', 'Faýl'), 'mode': mode}
+    except Exception as e: 
+        return {'error': str(e)}
 
 async def generate_tts_async(text, voice):
     communicate = edge_tts.Communicate(text, voice)
@@ -530,7 +534,8 @@ def handle_callback(call):
             except Exception as e:
                 bot.edit_message_text(f"❌ Iberip bolmady: {e}", cid, call.message.message_id)
             finally:
-                if os.path.exists(res['file']): os.remove(res['file'])
+                if res.get('file') and os.path.exists(res['file']): 
+                    os.remove(res['file'])
                 if short_id in url_cache: del url_cache[short_id]
         return
         
@@ -634,7 +639,7 @@ def on_text(m):
     else: bot.send_chat_action(cid, 'typing'); bot.reply_to(m, f_ai(txt) + "\n\n<i>(Göni AI ýazýarsyňyz. Menýu üçin /menu ýazyň)</i>")
 
 if __name__ == '__main__':
-    print("🤖 Bot işledi... (Full Version)")
+    print("🤖 Bot işledi... (Final Version)")
     while True:
         try: 
             bot.infinity_polling(timeout=10, long_polling_timeout=5)
