@@ -300,7 +300,6 @@ def f_ip(q):
 
 def f_username(u):
     u = re.sub(r'[^a-zA-Z0-9_.\-]', '', u)
-    # Top 15 sites for username search
     sites = {
         "GitHub":f"https://github.com/{u}", "Reddit":f"https://www.reddit.com/user/{u}",
         "Telegram":f"https://t.me/{u}", "Instagram":f"https://www.instagram.com/{u}/",
@@ -323,22 +322,18 @@ def f_username(u):
     if notf:  s += "🔴 <b>Ýok:</b> " + ", ".join(notf)
     return s
 
-# TÄZE: Suratdan adam gözlemek (Mugt API: 0x0.st arkaly)
 def f_face_search(img_bytes):
     try:
-        # 1. Suraty gizlin we mugt ýükleýän saýta iberýäris
         files = {'file': ('image.jpg', img_bytes)}
         r = requests.post('https://0x0.st', files=files, timeout=15)
         if r.status_code != 200:
-            return "❌ Suraty gözleg üçin ýükläp bolmady (0x0.st ýapyk)."
+            return "❌ Suraty gözleg üçin ýükläp bolmady."
         
         img_url = r.text.strip()
-        
-        # 2. Gözleg linklerini taýýarlaýarys
         out = [
             "✅ <b>Surat üstünlikli ýüklendi!</b>\n",
             "Aşakdaky baglanyşyklara basyp, şol adamyň beýleki profillerini we suratlaryny gözläp bilersiňiz:\n",
-            f"🔍 <a href='https://lens.google.com/uploadbyurl?url={img_url}'>Google Lens (Iň güýçli)</a>",
+            f"🔍 <a href='https://lens.google.com/uploadbyurl?url={img_url}'>Google Lens</a>",
             f"🔍 <a href='https://yandex.com/images/search?rpt=imageview&url={img_url}'>Yandex Surat Gözlegi</a>",
             f"🔍 <a href='https://www.bing.com/images/search?view=detailv2&iss=sbiupload&q=imgurl:{img_url}'>Bing Tersine Gözleg</a>",
             f"🔍 <a href='https://tineye.com/search?url={img_url}'>TinEye</a>",
@@ -462,23 +457,20 @@ def f_todo_list(cid):
     out = ["📝 <b>Ýazgylaryňyz:</b>\n"] + [f"{'✅' if d else '⬜'} <code>#{rid}</code> — {txt}" for rid,txt,d in rows]
     return "\n".join(out) + "\n\n<i>/done ID · /del ID</i>"
 
-# TIKTOK 100% DÜZEDILEN FUNKSIÝA
 def f_download(url, cid, mode='audio'):
     try:
         ydl_opts = {
             'quiet': True,
             'no_warnings': True,
-            'impersonate': 'chrome', # TikTok üçin iň möhüm setir
+            'impersonate': 'chrome',
             'outtmpl': f'./{cid}_dl_%(id)s.%(ext)s',
             'noplaylist': True,
-            'extractor_args': {'tiktok': {'webpage_video_data': ['1']}} # TikTok-a goşmaça maglumat ibermek üçin
+            'extractor_args': {'tiktok': {'webpage_video_data': ['1']}}
         }
-        
         if mode == 'audio':
             ydl_opts['format'] = 'bestaudio/best'
             ydl_opts['postprocessors'] = [{'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': '192'}]
         else:
-            # TikTok üçin iň gowy format
             ydl_opts['format'] = 'best[ext=mp4]/best' 
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -623,18 +615,23 @@ def handle_callback(call):
             bot.edit_message_text(f"{tr(cid, 'dl_err')}\n\n<code>{res['error'][:100]}</code>", cid, call.message.message_id)
         else:
             try:
-                file_size = os.path.getsize(res['file']) / (1024 * 1024)
+                file_path = res.get('file', '')
+                if not os.path.exists(file_path):
+                    bot.edit_message_text("❌ Faýl göçüp bilmedi ýa-da tapylmady.", cid, call.message.message_id)
+                    return
+                    
+                file_size = os.path.getsize(file_path) / (1024 * 1024)
                 if file_size > 50:
                     bot.edit_message_text(f"❌ Faýl gaty uly ({file_size:.1f} MB). Telegram boty 50MB-dan uly faýl iberip bilmeýär.", cid, call.message.message_id)
                 else:
-                    with open(res['file'], 'rb') as f:
+                    with open(file_path, 'rb') as f:
                         if mode == 'video': bot.send_video(cid, f, caption=res['title'], supports_streaming=True)
                         else: bot.send_audio(cid, f, title=res['title'])
                     bot.delete_message(cid, call.message.message_id)
             except Exception as e:
                 bot.edit_message_text(f"❌ Iberip bolmady: {e}", cid, call.message.message_id)
             finally:
-                if res.get('file') and os.path.exists(res['file']): os.remove(res['file'])
+                if file_path and os.path.exists(file_path): os.remove(file_path)
                 if short_id in url_cache: del url_cache[short_id]
         return
         
@@ -716,12 +713,16 @@ def on_text(m):
         msg = bot.reply_to(m, tr(cid, 'load'))
         res = f_music_search(txt, cid)
         if res and not res.get('error'):
-            try:
-                with open(res['file'], 'rb') as f: bot.send_audio(cid, f, title=res['title'])
-                bot.delete_message(cid, msg.message_id)
-            except Exception as e: bot.edit_message_text(f"❌ {e}", cid, msg.message_id)
-            finally:
-                if os.path.exists(res.get('file', '')): os.remove(res['file'])
+            file_path = res.get('file', '')
+            if os.path.exists(file_path):
+                try:
+                    with open(file_path, 'rb') as f: bot.send_audio(cid, f, title=res['title'])
+                    bot.delete_message(cid, msg.message_id)
+                except Exception as e: bot.edit_message_text(f"❌ {e}", cid, msg.message_id)
+                finally:
+                    if os.path.exists(file_path): os.remove(file_path)
+            else:
+                bot.edit_message_text("❌ Aýdym faýly tapylmady.", cid, msg.message_id)
         else: bot.edit_message_text(f"❌ Aýdym tapylmady.", cid, msg.message_id)
     elif st == 'book':
         user_state.pop(cid, None); bot.send_chat_action(cid, 'typing')
@@ -758,11 +759,17 @@ def on_text(m):
         user_state.pop(cid, None); c.execute("INSERT INTO todos(chat_id,text) VALUES(?,?)", (cid, txt)); conn.commit()
         bot.reply_to(m, f"✅ Goşuldy!\n\n{f_todo_list(cid)}")
     elif st == 'remind': user_state.pop(cid, None); bot.reply_to(m, f_add_reminder(cid, txt))
-    else: bot.send_chat_action(cid, 'typing'); bot.reply_to(m, f_ai(txt) + "\n\n<i>(Göni AI ýazýarsyňyz. Menýu üçin /menu ýazyň)</i>")
+    else: 
+        # URL barlagy (TikTok/Youtube salgylaryny awtomatik tanap, DL bölümine iberýär)
+        if re.match(r'^(https?://)?(www\.)?(vt\.tiktok\.com|tiktok\.com|youtube\.com|youtu\.be|instagram\.com)/', txt):
+            user_state[cid] = 'dl'
+            return bot.reply_to(m, tr(cid, 'ask_format'), reply_markup=dl_format_kb(cid, txt))
+            
+        bot.send_chat_action(cid, 'typing'); bot.reply_to(m, f_ai(txt) + "\n\n<i>(Göni AI ýazýarsyňyz. Menýu üçin /menu ýazyň)</i>")
 
 # ---------- BOTY DURMAGYNYŇ ÖŇÜNI ALMAK (409 FIX) ----------
 if __name__ == '__main__':
-    print("🤖 Bot işledi... (Doly wersiýa + Täze OSINT we TikTok düzedişleri)")
+    print("🤖 Bot işledi... (Doly wersiýa + Xata düzedişleri)")
     
     try:
         bot.remove_webhook()
