@@ -8,7 +8,7 @@ from PIL import Image
 from bs4 import BeautifulSoup
 
 
-TOKEN = os.environ.get("9035746176:AAEqbcV28eO6L8Gs4AVW24hFhaI4X14eQtU") 
+TOKEN = os.environ.get("BOT_TOKEN") 
 bot = telebot.TeleBot(TOKEN, parse_mode="HTML")
 
 # ---------- WAGTLAÝYN KES (CACHE) ----------
@@ -638,4 +638,5 @@ if __name__ == '__main__':
         try: bot.infinity_polling(timeout=10, long_polling_timeout=5)
         except Exception as e: 
             print(f"⚠️ Baglanyşyk ýalňyşlygy: {e}")
+            time.sleep(5)lygy: {e}")
             time.sleep(5)
