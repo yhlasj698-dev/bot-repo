@@ -37,7 +37,7 @@ T = {
 'tk': {
  'menu': "🤖 <b>Esasy Menýu</b>\n\nHaýsy bölümi saýlaýarsyňyz?",
  'cat_w': "🌤 Howa & Täzelikler", 'desc_w': "<b>🌤 Howa & Täzelikler</b>\n\nHowa maglumaty, zilzilalar we IT täzelikleri.",
- 'cat_os': "🕵️ OSINT & Howpsuzlyk", 'desc_os': "<b>🕵️ OSINT & Howpsuzlyk</b>\n\nIP barlag, ulanyjy gözleg, parol we saýtdan maglumat ýygnamak.",
+ 'cat_os': "🕵️ OSINT & Howpsuzlyk", 'desc_os': "<b>🕵️ OSINT & Howpsuzlyk</b>\n\nIP barlag, ulanyjy gözleg, parol we <b>suratdan adam gözlemek</b>.",
  'cat_md': "📥 Media & Guralar", 'desc_md': "<b>📥 Media & Guralar</b>\n\nWideo/Aýdym ýükle, Janly Ses, QR kod, Suratdan PDF.",
  'cat_ai': "🤖 AI & Dil", 'desc_ai': "<b>🤖 AI & Dil</b>\n\nAI çat, Surat dörediji, terjime we OCR.",
  'cat_pt': "🧰 Amaly Gurallar", 'desc_pt': "<b>🧰 Amaly Gurallar</b>\n\nBirlik öwüriji, Saýt barlagy, Kino gözleg.",
@@ -46,6 +46,7 @@ T = {
  
  'btn_weather': "🌤 Howa", 'btn_quake': "🌍 Zilzila", 'btn_news': "📰 Täzelikler",
  'btn_ip': "🌐 IP/Domen", 'btn_user': "🕵️ Ulanyjy", 'btn_pass': "🔐 Parol", 'btn_scrape': "🕸 Saýtdan Maglumat",
+ 'btn_face': "📸 Suratdan Gözle",
  'btn_dl': "📥 Ýükle", 'btn_tts': "🗣 Ses (TTS)", 'btn_qr': "📱 QR Döret", 'btn_qrread': "📷 QR Oka", 'btn_pdf': "📄 Suratdan PDF",
  'btn_ai': "🤖 AI Çat", 'btn_img': "🎨 Surat Döret", 'btn_tr': "🌐 Terjime", 'btn_ocr': "📸 OCR",
  'btn_conv': "📏 Birlik Öwür", 'btn_site': "📶 Saýt Barla", 'btn_movie': "🎬 Kino/Serial",
@@ -55,7 +56,8 @@ T = {
  
  'ask_city': "🏙 Şäher adyny ýazyň:", 'ask_ip': "🌐 IP ýa-da domen ýazyň:",
  'ask_user': "👤 Ulanyjy adyny ýazyň:", 'ask_pass': "🔐 Parol uzynlygyny ýazyň (meselem: 16):",
- 'ask_dl': "📥 Wideo ýa-da aýdym salgysyny (URL) iberiň:",
+ 'ask_dl': "📥 Wideo ýa-da aýdym salgysyny (URL) iberiň (TikTok, YT, IG):",
+ 'ask_face': "📸 Adamyň suratyny iberiň (ýüzi doly we anyk görünýän bolmaly):",
  'ask_tts': "🗣 Seslendirmek üçin tekst iberiň:", 'ask_qr': "📱 QR üçin tekst/link iberiň:",
  'ask_qrread': "📷 Içinde QR kod bar suraty iberiň:", 'ask_pdf': "📄 PDF ýasamak üçin suratlary iberiň.\nDoly bolansoň /done_pdf ýazyň.",
  'ask_ai': "🤖 <b>AI Çat açyldy!</b>\n\nIslendik soragyňyzy ýazyp bilersiňiz.\nÇykmak üçin <code>/stop</code> ýazyň.",
@@ -75,13 +77,14 @@ T = {
 },
 'ru': {
  'menu': "🤖 <b>Главное меню</b>\n\nВыберите раздел:", 'cat_w': "🌤 Погода и Новости", 'desc_w': "<b>🌤 Погода и Новости</b>",
- 'cat_os': "🕵️ OSINT и Безопасность", 'desc_os': "<b>🕵️ OSINT и Безопасность</b>",
+ 'cat_os': "🕵️ OSINT и Безопасность", 'desc_os': "<b>🕵️ OSINT и Безопасность</b>\n\nIP, юзернейм, пароль и <b>поиск по фото</b>.",
  'cat_md': "📥 Медиа и Инструменты", 'desc_md': "<b>📥 Медиа и Инструменты</b>",
  'cat_ai': "🤖 ИИ и Язык", 'desc_ai': "<b>🤖 ИИ и Язык</b>",
  'cat_pt': "🧰 Полезные инструменты", 'desc_pt': "<b>🧰 Полезные инструменты</b>",
- 'cat_fun': "🎮 Игры и Поиск", 'desc_fun': "<b>🎮 Игры и Поиск</b>\n\nПоиск музыки, книг и игра по Кибербезопасности.",
+ 'cat_fun': "🎮 Игры и Поиск", 'desc_fun': "<b>🎮 Игры и Поиск</b>\n\nПоиск музыки, книг и игра.",
  'cat_ps': "📝 Личное", 'desc_ps': "<b>📝 Личное</b>",
  'btn_weather': "🌤 Погода", 'btn_quake': "🌍 Землетрясения", 'btn_news': "📰 Новости", 'btn_ip': "🌐 IP/Домен", 'btn_user': "🕵️ Юзернейм", 'btn_pass': "🔐 Пароль", 'btn_scrape': "🕸 Парсинг сайта",
+ 'btn_face': "📸 Поиск по фото",
  'btn_dl': "📥 Скачать", 'btn_tts': "🗣 Озвучка", 'btn_qr': "📱 QR Создать", 'btn_qrread': "📷 QR Читать", 'btn_pdf': "📄 Фото в PDF",
  'btn_ai': "🤖 ИИ Чат", 'btn_img': "🎨 Создать фото", 'btn_tr': "🌐 Перевод", 'btn_ocr': "📸 OCR",
  'btn_conv': "📏 Конвертер", 'btn_site': "📶 Проверка сайта", 'btn_movie': "🎬 Кино/Сериал",
@@ -89,6 +92,7 @@ T = {
  'btn_todo': "📝 Заметки", 'btn_remind': "⏰ Напоминание", 'back': "⬅️ Назад", 'stop_ai': "🛑 Выйти из ИИ",
  'btn_vid': "🎬 Видео (HQ)", 'btn_aud': "🎵 Аудио (MP3)",
  'ask_city': "🏙 Название города:", 'ask_ip': "🌐 IP или домен:", 'ask_user': "👤 Юзернейм:", 'ask_pass': "🔐 Длина пароля:", 'ask_dl': "📥 Отправьте ссылку (URL):",
+ 'ask_face': "📸 Отправьте фото человека (лицо должно быть четким):",
  'ask_tts': "🗣 Текст для озвучки:", 'ask_qr': "📱 Текст/ссылка для QR:", 'ask_qrread': "📷 Отправьте фото с QR-кодом:", 'ask_pdf': "📄 Отправьте фото для PDF.\nЗатем /done_pdf.",
  'ask_ai': "🤖 <b>ИИ Чат включен!</b>\n\nЗадайте вопрос.\nДля выхода <code>/stop</code>.", 'ask_img': "🎨 <b>Генератор картинок</b>\n\nОпишите картинку на английском:",
  'ask_tr': "🌐 Текст для перевода:", 'ask_ocr': "📸 Отправьте фото с текстом:", 
@@ -101,13 +105,14 @@ T = {
 },
 'en': {
  'menu': "🤖 <b>Main Menu</b>\n\nSelect a category:", 'cat_w': "🌤 Weather & News", 'desc_w': "<b>🌤 Weather & News</b>",
- 'cat_os': "🕵️ OSINT & Security", 'desc_os': "<b>🕵️ OSINT & Security</b>",
+ 'cat_os': "🕵️ OSINT & Security", 'desc_os': "<b>🕵️ OSINT & Security</b>\n\nIP, username, password and <b>photo search</b>.",
  'cat_md': "📥 Media & Tools", 'desc_md': "<b>📥 Media & Tools</b>",
  'cat_ai': "🤖 AI & Language", 'desc_ai': "<b>🤖 AI & Language</b>",
  'cat_pt': "🧰 Practical Tools", 'desc_pt': "<b>🧰 Practical Tools</b>",
  'cat_fun': "🎮 Games & Search", 'desc_fun': "<b>🎮 Games & Search</b>\n\nMusic search, Book search and Cyber Quiz.",
  'cat_ps': "📝 Personal", 'desc_ps': "<b>📝 Personal</b>",
  'btn_weather': "🌤 Weather", 'btn_quake': "🌍 Earthquakes", 'btn_news': "📰 News", 'btn_ip': "🌐 IP/Domain", 'btn_user': "🕵️ Username", 'btn_pass': "🔐 Password", 'btn_scrape': "🕸 Web Scraper",
+ 'btn_face': "📸 Photo Search",
  'btn_dl': "📥 Download", 'btn_tts': "🗣 TTS", 'btn_qr': "📱 Create QR", 'btn_qrread': "📷 Read QR", 'btn_pdf': "📄 Image to PDF",
  'btn_ai': "🤖 AI Chat", 'btn_img': "🎨 Gen Image", 'btn_tr': "🌐 Translate", 'btn_ocr': "📸 OCR",
  'btn_conv': "📏 Converter", 'btn_site': "📶 Site Check", 'btn_movie': "🎬 Movie/Series",
@@ -115,6 +120,7 @@ T = {
  'btn_todo': "📝 Notes", 'btn_remind': "⏰ Reminder", 'back': "⬅️ Back", 'stop_ai': "🛑 Exit AI",
  'btn_vid': "🎬 Video (HQ)", 'btn_aud': "🎵 Audio (MP3)",
  'ask_city': "🏙 City name:", 'ask_ip': "🌐 IP or domain:", 'ask_user': "👤 Username:", 'ask_pass': "🔐 Password length:", 'ask_dl': "📥 Send URL:",
+ 'ask_face': "📸 Send a photo of the person (face must be clear):",
  'ask_tts': "🗣 Text for TTS:", 'ask_qr': "📱 Text/link for QR:", 'ask_qrread': "📷 Send QR photo:", 'ask_pdf': "📄 Send images for PDF.\nThen /done_pdf.",
  'ask_ai': "🤖 <b>AI Chat is ON!</b>", 'ask_img': "🎨 <b>Image Generator</b>",
  'ask_tr': "🌐 Text to translate:", 'ask_ocr': "📸 Send a photo with text:", 
@@ -127,13 +133,14 @@ T = {
 },
 'tr': {
  'menu': "🤖 <b>Ana Menü</b>", 'cat_w': "🌤 Hava & Haberler", 'desc_w': "<b>🌤 Hava & Haberler</b>",
- 'cat_os': "🕵️ OSINT & Güvenlik", 'desc_os': "<b>🕵️ OSINT & Güvenlik</b>",
+ 'cat_os': "🕵️ OSINT & Güvenlik", 'desc_os': "<b>🕵️ OSINT & Güvenlik</b>\n\nIP, kullanıcı adı, şifre ve <b>fotoğraf arama</b>.",
  'cat_md': "📥 Medya & Araçlar", 'desc_md': "<b>📥 Medya & Araçlar</b>",
  'cat_ai': "🤖 AI & Dil", 'desc_ai': "<b>🤖 AI & Dil</b>",
  'cat_pt': "🧰 Pratik Araçlar", 'desc_pt': "<b>🧰 Pratik Araçlar</b>",
  'cat_fun': "🎮 Oyun & Arama", 'desc_fun': "<b>🎮 Oyun & Arama</b>\n\nMüzik arama, Kitap arama ve Siber Oyun.",
  'cat_ps': "📝 Kişisel", 'desc_ps': "<b>📝 Kişisel</b>",
  'btn_weather': "🌤 Hava", 'btn_quake': "🌍 Depremler", 'btn_news': "📰 Haberler", 'btn_ip': "🌐 IP", 'btn_user': "🕵️ Kullanıcı", 'btn_pass': "🔐 Şifre", 'btn_scrape': "🕸 Kazıma",
+ 'btn_face': "📸 Fotoğraftan Ara",
  'btn_dl': "📥 İndir", 'btn_tts': "🗣 Seslendir", 'btn_qr': "📱 QR Oluştur", 'btn_qrread': "📷 QR Oku", 'btn_pdf': "📄 PDF",
  'btn_ai': "🤖 AI Sohbet", 'btn_img': "🎨 Resim Oluştur", 'btn_tr': "🌐 Çeviri", 'btn_ocr': "📸 OCR",
  'btn_conv': "📏 Çevir", 'btn_site': "📶 Site Kontrol", 'btn_movie': "🎬 Film/Dizi",
@@ -141,6 +148,7 @@ T = {
  'btn_todo': "📝 Notlar", 'btn_remind': "⏰ Hatırlatıcı", 'back': "⬅️ Geri", 'stop_ai': "🛑 Çık",
  'btn_vid': "🎬 Video (HQ)", 'btn_aud': "🎵 Ses (MP3)",
  'ask_city': "🏙 Şehir:", 'ask_ip': "🌐 IP/Domain:", 'ask_user': "👤 Kullanıcı:", 'ask_pass': "🔐 Uzunluk:", 'ask_dl': "📥 URL:",
+ 'ask_face': "📸 Kişinin fotoğrafını gönderin (yüz net olmalı):",
  'ask_tts': "🗣 Metin:", 'ask_qr': "📱 Metin/Link:", 'ask_qrread': "📷 QR Fotoğrafı:", 'ask_pdf': "📄 Resimleri gönderin.\nSonra /done_pdf.",
  'ask_ai': "🤖 <b>AI AÇIK!</b>", 'ask_img': "🎨 <b>Resim Oluşturucu</b>",
  'ask_tr': "🌐 Metin:", 'ask_ocr': "📸 Fotoğraf:", 'ask_conv': "📏 Format:", 'ask_site': "📶 Site:", 
@@ -152,13 +160,14 @@ T = {
 },
 'de': {
  'menu': "🤖 <b>Hauptmenü</b>", 'cat_w': "🌤 Wetter", 'desc_w': "<b>🌤 Wetter</b>",
- 'cat_os': "🕵️ OSINT", 'desc_os': "<b>🕵️ OSINT</b>",
+ 'cat_os': "🕵️ OSINT", 'desc_os': "<b>🕵️ OSINT</b>\n\nIP, Benutzername, Passwort und <b>Fotosuche</b>.",
  'cat_md': "📥 Medien", 'desc_md': "<b>📥 Medien</b>",
  'cat_ai': "🤖 KI", 'desc_ai': "<b>🤖 KI</b>",
  'cat_pt': "🧰 Tools", 'desc_pt': "<b>🧰 Tools</b>",
  'cat_fun': "🎮 Spiele", 'desc_fun': "<b>🎮 Spiele</b>\n\nMusiksuche, Buchsuche und Cyber-Quiz.",
  'cat_ps': "📝 Notizen", 'desc_ps': "<b>📝 Notizen</b>",
  'btn_weather': "🌤 Wetter", 'btn_quake': "🌍 Erdbeben", 'btn_news': "📰 News", 'btn_ip': "🌐 IP", 'btn_user': "🕵️ Benutzer", 'btn_pass': "🔐 Passwort", 'btn_scrape': "🕸 Scraper",
+ 'btn_face': "📸 Fotosuche",
  'btn_dl': "📥 Download", 'btn_tts': "🗣 TTS", 'btn_qr': "📱 QR", 'btn_qrread': "📷 QR lesen", 'btn_pdf': "📄 PDF",
  'btn_ai': "🤖 Chat", 'btn_img': "🎨 Bild", 'btn_tr': "🌐 Übersetzen", 'btn_ocr': "📸 OCR",
  'btn_conv': "📏 Umrechner", 'btn_site': "📶 Check", 'btn_movie': "🎬 Film",
@@ -166,6 +175,7 @@ T = {
  'btn_todo': "📝 Notizen", 'btn_remind': "⏰ Erinnerung", 'back': "⬅️ Zurück", 'stop_ai': "🛑 KI beenden",
  'btn_vid': "🎬 Video (HQ)", 'btn_aud': "🎵 Audio (MP3)",
  'ask_city': "🏙 Stadt:", 'ask_ip': "🌐 IP:", 'ask_user': "👤 Benutzer:", 'ask_pass': "🔐 Länge:", 'ask_dl': "📥 URL:",
+ 'ask_face': "📸 Senden Sie ein Foto (Gesicht klar):",
  'ask_tts': "🗣 Text:", 'ask_qr': "📱 Text:", 'ask_qrread': "📷 QR Foto:", 'ask_pdf': "📄 Bilder senden.\nDann /done_pdf.",
  'ask_ai': "🤖 <b>KI AN!</b>", 'ask_img': "🎨 <b>Bildgenerator</b>",
  'ask_tr': "🌐 Text:", 'ask_ocr': "📸 Foto:", 'ask_conv': "📏 Format:", 'ask_site': "📶 Website:", 
@@ -207,7 +217,8 @@ def cat_kb(cid, cat):
         kb.add(types.InlineKeyboardButton(tr(cid,'btn_ip'), callback_data="act_ip"),
                types.InlineKeyboardButton(tr(cid,'btn_user'), callback_data="act_user"),
                types.InlineKeyboardButton(tr(cid,'btn_pass'), callback_data="act_pass"),
-               types.InlineKeyboardButton(tr(cid,'btn_scrape'), callback_data="act_scrape"))
+               types.InlineKeyboardButton(tr(cid,'btn_scrape'), callback_data="act_scrape"),
+               types.InlineKeyboardButton(tr(cid,'btn_face'), callback_data="act_face"))
     elif cat == 'md':
         kb.add(types.InlineKeyboardButton(tr(cid,'btn_dl'), callback_data="act_dl"),
                types.InlineKeyboardButton(tr(cid,'btn_tts'), callback_data="act_tts"),
@@ -256,15 +267,13 @@ def dl_format_kb(cid, url):
 def f_scrape(url):
     if not url.startswith('http'): url = 'https://' + url
     try:
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
-        r = requests.get(url, headers=headers, timeout=15)
+        r = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
         soup = BeautifulSoup(r.text, 'html.parser')
         title = soup.title.string if soup.title else "Ady ýok"
         paragraphs = [p.text.strip() for p in soup.find_all('p') if len(p.text.strip()) > 30]
         text = "\n\n".join(paragraphs[:3]) 
-        if not text: return "❌ Saýtda peýdaly tekst tapylmady."
-        return f"🕸 <b>Saýt:</b> {title}\n\n{text[:1500]}..."
-    except Exception as e: return f"❌ Ýalňyşlyk: {e}"
+        return f"🕸 <b>Saýt:</b> {title}\n\n{text[:1500]}..." if text else "❌ Tekst tapylmady."
+    except Exception as e: return f"❌ {e}"
 
 def f_weather(city):
     try:
@@ -276,8 +285,7 @@ def f_weather(city):
         for i in range(12):
             t = w["hourly"]["time"][i].split("T")[1]
             temp, hum, rain = w["hourly"]["temperature_2m"][i], w["hourly"]["relative_humidity_2m"][i], w["hourly"]["precipitation_probability"][i]
-            em = "☀️" if rain<20 else "🌦" if rain<60 else "⛈"
-            out.append(f"{em} <code>{t}</code> — <b>{temp}°C</b>  💧{hum}%  🌧{rain}%")
+            out.append(f"{'☀️' if rain<20 else '🌦' if rain<60 else '⛈'} <code>{t}</code> — <b>{temp}°C</b> 💧{hum}%")
         return "\n".join(out)
     except Exception as e: return f"❌ {e}"
 
@@ -285,14 +293,24 @@ def f_ip(q):
     try:
         try: ip = socket.gethostbyname(q)
         except: ip = q
-        r = requests.get(f"http://ip-api.com/json/{ip}?fields=status,country,city,isp,org,timezone,query", timeout=10).json()
+        r = requests.get(f"http://ip-api.com/json/{ip}?fields=status,country,city,isp,org,query", timeout=10).json()
         if r.get("status") != "success": return None
-        return f"🌐 <b>{r.get('query')}</b>\n\n🏳️ <b>{r.get('country','—')}</b>\n🏙 <b>{r.get('city','—')}</b>\n📡 <b>{r.get('isp','—')}</b>"
+        return f"🌐 <b>{r.get('query')}</b>\n🏳️ <b>{r.get('country','—')}</b>\n🏙 <b>{r.get('city','—')}</b>\n📡 <b>{r.get('isp','—')}</b>"
     except Exception as e: return f"❌ {e}"
 
 def f_username(u):
     u = re.sub(r'[^a-zA-Z0-9_.\-]', '', u)
-    sites = {"GitHub":f"https://github.com/{u}","Reddit":f"https://www.reddit.com/user/{u}","Telegram":f"https://t.me/{u}","Instagram":f"https://www.instagram.com/{u}/","TikTok":f"https://www.tiktok.com/@{u}","Twitter/X":f"https://x.com/{u}"}
+    # Top 15 sites for username search
+    sites = {
+        "GitHub":f"https://github.com/{u}", "Reddit":f"https://www.reddit.com/user/{u}",
+        "Telegram":f"https://t.me/{u}", "Instagram":f"https://www.instagram.com/{u}/",
+        "TikTok":f"https://www.tiktok.com/@{u}", "Twitter/X":f"https://x.com/{u}",
+        "Pinterest":f"https://www.pinterest.com/{u}/", "Twitch":f"https://www.twitch.tv/{u}",
+        "YouTube":f"https://youtube.com/@{u}", "Steam":f"https://steamcommunity.com/id/{u}",
+        "Spotify":f"https://open.spotify.com/user/{u}", "VK":f"https://vk.com/{u}",
+        "Facebook":f"https://www.facebook.com/{u}", "Flickr":f"https://www.flickr.com/people/{u}",
+        "Dribbble":f"https://dribbble.com/{u}"
+    }
     found, notf = [], []
     for name, url in sites.items():
         try:
@@ -304,6 +322,31 @@ def f_username(u):
     if found: s += "✅ <b>Bar:</b>\n" + "\n".join(found) + "\n\n"
     if notf:  s += "🔴 <b>Ýok:</b> " + ", ".join(notf)
     return s
+
+# TÄZE: Suratdan adam gözlemek (Mugt API: 0x0.st arkaly)
+def f_face_search(img_bytes):
+    try:
+        # 1. Suraty gizlin we mugt ýükleýän saýta iberýäris
+        files = {'file': ('image.jpg', img_bytes)}
+        r = requests.post('https://0x0.st', files=files, timeout=15)
+        if r.status_code != 200:
+            return "❌ Suraty gözleg üçin ýükläp bolmady (0x0.st ýapyk)."
+        
+        img_url = r.text.strip()
+        
+        # 2. Gözleg linklerini taýýarlaýarys
+        out = [
+            "✅ <b>Surat üstünlikli ýüklendi!</b>\n",
+            "Aşakdaky baglanyşyklara basyp, şol adamyň beýleki profillerini we suratlaryny gözläp bilersiňiz:\n",
+            f"🔍 <a href='https://lens.google.com/uploadbyurl?url={img_url}'>Google Lens (Iň güýçli)</a>",
+            f"🔍 <a href='https://yandex.com/images/search?rpt=imageview&url={img_url}'>Yandex Surat Gözlegi</a>",
+            f"🔍 <a href='https://www.bing.com/images/search?view=detailv2&iss=sbiupload&q=imgurl:{img_url}'>Bing Tersine Gözleg</a>",
+            f"🔍 <a href='https://tineye.com/search?url={img_url}'>TinEye</a>",
+            "\n<i>Bellik: Bu usul arkaly adamyň VK, TikTok, Instagram ýaly açyk profillerini tapyp bilersiňiz.</i>"
+        ]
+        return "\n".join(out)
+    except Exception as e:
+        return f"❌ Ýalňyşlyk: {e}"
 
 def f_pass(l=16):
     return ''.join(secrets.choice(string.ascii_letters + string.digits + "!@#$%^&*") for _ in range(min(max(l, 8), 64)))
@@ -365,7 +408,7 @@ def f_sitecheck(url):
     try:
         r = requests.get(url, timeout=10)
         em = "🟢" if r.status_code == 200 else "🟠"
-        return f"📶 <b>Saýt Barlagy</b>\n\n{em} <b>{url}</b>\nStatus kody: <b>{r.status_code}</b>"
+        return f"📶 <b>Saýt Barlagy</b>\n\n{em} <b>{url}</b>\nStatus: <b>{r.status_code}</b>"
     except Exception as e: return f"🔴 <b>{url}</b> açylýanok."
 
 def f_ai(prompt):
@@ -419,20 +462,24 @@ def f_todo_list(cid):
     out = ["📝 <b>Ýazgylaryňyz:</b>\n"] + [f"{'✅' if d else '⬜'} <code>#{rid}</code> — {txt}" for rid,txt,d in rows]
     return "\n".join(out) + "\n\n<i>/done ID · /del ID</i>"
 
+# TIKTOK 100% DÜZEDILEN FUNKSIÝA
 def f_download(url, cid, mode='audio'):
     try:
         ydl_opts = {
             'quiet': True,
             'no_warnings': True,
-            'impersonate': 'chrome',
+            'impersonate': 'chrome', # TikTok üçin iň möhüm setir
             'outtmpl': f'./{cid}_dl_%(id)s.%(ext)s',
             'noplaylist': True,
+            'extractor_args': {'tiktok': {'webpage_video_data': ['1']}} # TikTok-a goşmaça maglumat ibermek üçin
         }
+        
         if mode == 'audio':
             ydl_opts['format'] = 'bestaudio/best'
             ydl_opts['postprocessors'] = [{'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': '192'}]
         else:
-            ydl_opts['format'] = 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'
+            # TikTok üçin iň gowy format
+            ydl_opts['format'] = 'best[ext=mp4]/best' 
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=True)
@@ -446,59 +493,44 @@ def f_download(url, cid, mode='audio'):
                         break
             
             if not os.path.exists(file_path):
-                return {'error': "Faýl göçürip alynmady (Format näsazlygy)."}
+                return {'error': "Faýl göçürip alynmady."}
 
             return {'file': file_path, 'title': info.get('title', 'Faýl'), 'mode': mode}
     except Exception as e: 
         return {'error': str(e)}
 
-# TÄZE: Aýdym Gözleýji
 def f_music_search(query, cid):
     try:
-        ydl_opts = {'format': 'bestaudio/best', 'quiet': True, 'default_search': 'ytsearch1'}
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        search_opts = {'quiet': True, 'default_search': 'ytsearch1', 'impersonate': 'chrome', 'noplaylist': True}
+        with yt_dlp.YoutubeDL(search_opts) as ydl:
             info = ydl.extract_info(query, download=False)
             if not info or 'entries' not in info or not info['entries']: return None
             video_url = info['entries'][0]['webpage_url']
             title = info['entries'][0]['title']
-        
-        # Soňra şol tapylan URL-i ýükleýäris
         res = f_download(video_url, cid, 'audio')
-        if res.get('error'): return {'error': res['error']}
-        res['title'] = title # YouTube-dan alnan hakyky at
-        return res
-    except Exception as e: return {'error': str(e)}
+        if res and not res.get('error'): res['title'] = title; return res
+        return {'error': 'Ýüklemek başartmady.'}
+    except: return {'error': 'Gözleg ýalňyşlygy.'}
 
-# TÄZE: Kitap Gözleýji
 def f_book_search(query):
     try:
-        url = f"https://openlibrary.org/search.json?q={requests.utils.quote(query)}&limit=3"
-        r = requests.get(url, timeout=15).json()
+        r = requests.get(f"https://openlibrary.org/search.json?q={requests.utils.quote(query)}&limit=3", timeout=15).json()
         docs = r.get('docs', [])
         if not docs: return None
-        
         out = [f"📚 <b>'{query}' boýunça netijeler:</b>\n"]
         for doc in docs:
-            title = doc.get('title', 'Näbelli')
-            author = doc.get('author_name', ['Näbelli'])[0]
-            year = doc.get('first_publish_year', '—')
-            key = doc.get('key', '')
-            out.append(f"📖 <b>{title}</b>\n✍️ {author} ({year})\n🔗 <a href='https://openlibrary.org{key}'>Maglumat</a>\n")
+            out.append(f"📖 <b>{doc.get('title', 'Näbelli')}</b>\n✍️ {doc.get('author_name', ['Näbelli'])[0]}\n🔗 <a href='https://openlibrary.org{doc.get('key', '')}'>Maglumat</a>\n")
         return "\n".join(out)
     except: return None
 
-# TÄZE: Kiberhowpsuzlyk Oýny
 quiz_data = [
     {"q": "Haýsy parol iň howpsuz?", "opts": ["12345678", "admin", "P@ssw0rd!2024", "qwerty"], "ans": 2},
     {"q": "SQL näme üçin ulanylýar?", "opts": ["Surat döretmek", "Maglumat bazasy", "Wideo görkezmek", "Ses ýazmak"], "ans": 1},
     {"q": "XSS hüjümi nämä gönükdirilen?", "opts": ["Serwere", "Ulanyjynyň brauzerine", "Tor toryna", "Wi-Fi-yna"], "ans": 1}
 ]
-
 def get_quiz_kb(q_idx):
     kb = types.InlineKeyboardMarkup(row_width=1)
-    q = quiz_data[q_idx]
-    for i, opt in enumerate(q['opts']):
-        kb.add(types.InlineKeyboardButton(opt, callback_data=f"quiz_{q_idx}_{i}"))
+    for i, opt in enumerate(quiz_data[q_idx]['opts']): kb.add(types.InlineKeyboardButton(opt, callback_data=f"quiz_{q_idx}_{i}"))
     return kb
 
 async def generate_tts_async(text, voice):
@@ -571,13 +603,9 @@ def handle_callback(call):
     
     if data.startswith("quiz_"):
         parts = data.split("_")
-        q_idx = int(parts[1])
-        ans_idx = int(parts[2])
-        q = quiz_data[q_idx]
-        if ans_idx == q['ans']:
-            bot.answer_callback_query(call.id, "✅ Dogry jogap!", show_alert=True)
-        else:
-            bot.answer_callback_query(call.id, "❌ Ýalňyş! Täzeden synanyşyň.", show_alert=True)
+        q_idx, ans_idx = int(parts[1]), int(parts[2])
+        if ans_idx == quiz_data[q_idx]['ans']: bot.answer_callback_query(call.id, "✅ Dogry jogap!", show_alert=True)
+        else: bot.answer_callback_query(call.id, "❌ Ýalňyş! Täzeden synanyşyň.", show_alert=True)
         return
 
     if data.startswith("dl_vid_") or data.startswith("dl_aud_"):
@@ -585,9 +613,7 @@ def handle_callback(call):
         short_id = data.replace("dl_vid_", "").replace("dl_aud_", "")
         url = url_cache.get(short_id)
         
-        if not url:
-            bot.answer_callback_query(call.id, "❌ URL-iň wagty geçdi. Täzeden iberiň.")
-            return
+        if not url: return bot.answer_callback_query(call.id, "❌ URL-iň wagty geçdi. Täzeden iberiň.")
             
         bot.edit_message_text(tr(cid, 'dl_wait'), cid, call.message.message_id)
         bot.send_chat_action(cid, 'upload_video' if mode == 'video' else 'record_audio')
@@ -602,16 +628,13 @@ def handle_callback(call):
                     bot.edit_message_text(f"❌ Faýl gaty uly ({file_size:.1f} MB). Telegram boty 50MB-dan uly faýl iberip bilmeýär.", cid, call.message.message_id)
                 else:
                     with open(res['file'], 'rb') as f:
-                        if mode == 'video':
-                            bot.send_video(cid, f, caption=res['title'], supports_streaming=True)
-                        else:
-                            bot.send_audio(cid, f, title=res['title'])
+                        if mode == 'video': bot.send_video(cid, f, caption=res['title'], supports_streaming=True)
+                        else: bot.send_audio(cid, f, title=res['title'])
                     bot.delete_message(cid, call.message.message_id)
             except Exception as e:
                 bot.edit_message_text(f"❌ Iberip bolmady: {e}", cid, call.message.message_id)
             finally:
-                if res.get('file') and os.path.exists(res['file']): 
-                    os.remove(res['file'])
+                if res.get('file') and os.path.exists(res['file']): os.remove(res['file'])
                 if short_id in url_cache: del url_cache[short_id]
         return
         
@@ -642,7 +665,7 @@ def handle_callback(call):
             bot.send_message(cid, f"🎮 <b>Kiberhowpsuzlyk Soragy 1:</b>\n\n{quiz_data[0]['q']}", reply_markup=get_quiz_kb(0))
         else:
             user_state[cid] = act
-            ask_map = {'weather':'ask_city','ip':'ask_ip','user':'ask_user','pass':'ask_pass','dl':'ask_dl','tts':'ask_tts','qr':'ask_qr','qrread':'ask_qrread','ocr':'ask_ocr','img':'ask_img','tr':'ask_tr','conv':'ask_conv','site':'ask_site','movie':'ask_movie','scrape':'ask_scrape','todo':'ask_todo','remind':'ask_remind', 'music':'ask_music', 'book':'ask_book'}
+            ask_map = {'weather':'ask_city','ip':'ask_ip','user':'ask_user','pass':'ask_pass','dl':'ask_dl','tts':'ask_tts','qr':'ask_qr','qrread':'ask_qrread','ocr':'ask_ocr','img':'ask_img','tr':'ask_tr','conv':'ask_conv','site':'ask_site','movie':'ask_movie','scrape':'ask_scrape','todo':'ask_todo','remind':'ask_remind', 'music':'ask_music', 'book':'ask_book', 'face':'ask_face'}
             bot.send_message(cid, tr(cid, ask_map.get(act, 'load')))
 
 @bot.message_handler(commands=['done'])
@@ -667,6 +690,12 @@ def on_text(m):
         if isinstance(st, dict) and st.get('type') == 'pdf':
             st['images'].append(downloaded_file)
             return bot.reply_to(m, f"✅ Surat goşuldy! (Jemi: {len(st['images'])})\nDowam ediň ýa-da /done_pdf ýazyň.")
+        if st == 'face':
+            user_state.pop(cid, None); bot.send_chat_action(cid, 'typing')
+            msg = bot.reply_to(m, "⏳ Surat gözleg ulgamyna ýüklenýär...")
+            res = f_face_search(downloaded_file)
+            bot.edit_message_text(res, cid, msg.message_id, disable_web_page_preview=True)
+            return
         if st == 'qrread': user_state.pop(cid, None); return bot.reply_to(m, f_qr_read(downloaded_file))
         if st == 'ocr': user_state.pop(cid, None); bot.send_chat_action(cid, 'typing'); return bot.reply_to(m, f_ocr(downloaded_file))
 
@@ -733,9 +762,8 @@ def on_text(m):
 
 # ---------- BOTY DURMAGYNYŇ ÖŇÜNI ALMAK (409 FIX) ----------
 if __name__ == '__main__':
-    print("🤖 Bot işledi... (Final Version + 5 New Features)")
+    print("🤖 Bot işledi... (Doly wersiýa + Täze OSINT we TikTok düzedişleri)")
     
-    # 409 Conflict (Restart) hatasyny düýpden düzmek üçin webhook-y pozýarys
     try:
         bot.remove_webhook()
         time.sleep(2)
@@ -744,7 +772,6 @@ if __name__ == '__main__':
 
     while True:
         try: 
-            # allowed_updates goşuldy (409-yň öňüni almak üçin)
             bot.infinity_polling(timeout=10, long_polling_timeout=5, allowed_updates=['message', 'callback_query'])
         except Exception as e: 
             print(f"⚠️ Baglanyşyk ýalňyşlygy (409 Restart): {e}")
