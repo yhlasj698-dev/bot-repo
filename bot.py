@@ -7,12 +7,12 @@ import yt_dlp
 from PIL import Image 
 from bs4 import BeautifulSoup
 
-
-TOKEN = os.environ.get("BOT_TOKEN") 
+# ---------- TOKEN ----------
+# Token Render paneline (Environment bölümine) goýulýar
+TOKEN = os.environ.get("BOT_TOKEN")
 bot = telebot.TeleBot(TOKEN, parse_mode="HTML")
 
 # ---------- WAGTLAÝYN KES (CACHE) ----------
-# URL-leri callback_data-a sygdyrmak üçin wagtlaýyn saklaýarys
 url_cache = {}
 
 # ---------- BAZA ----------
@@ -224,7 +224,6 @@ def stop_ai_kb(cid):
 
 def dl_format_kb(cid, url):
     kb = types.InlineKeyboardMarkup(row_width=2)
-    # URL-i kesde saklaýarys we diňe gysga ID-ni callback_data-a berýäris
     short_id = uuid.uuid4().hex[:10] 
     url_cache[short_id] = url
     
@@ -497,7 +496,6 @@ def handle_callback(call):
     cid = call.message.chat.id
     data = call.data
     
-    # TÄZE: Kesden URL-i alyp ýüklemek
     if data.startswith("dl_vid_") or data.startswith("dl_aud_"):
         mode = 'video' if data.startswith("dl_vid_") else 'audio'
         short_id = data.replace("dl_vid_", "").replace("dl_aud_", "")
@@ -529,7 +527,6 @@ def handle_callback(call):
                 bot.edit_message_text(f"❌ Iberip bolmady: {e}", cid, call.message.message_id)
             finally:
                 if os.path.exists(res['file']): os.remove(res['file'])
-                # Işledilenden soň kesden pozýarys
                 if short_id in url_cache: del url_cache[short_id]
         return
         
@@ -633,10 +630,10 @@ def on_text(m):
     else: bot.send_chat_action(cid, 'typing'); bot.reply_to(m, f_ai(txt) + "\n\n<i>(Göni AI ýazýarsyňyz. Menýu üçin /menu ýazyň)</i>")
 
 if __name__ == '__main__':
-    print("🤖 Bot işledi... (Kes ulanylyp düzedildi)")
+    print("🤖 Bot işledi... (Full Version)")
     while True:
-        try: bot.infinity_polling(timeout=10, long_polling_timeout=5)
+        try: 
+            bot.infinity_polling(timeout=10, long_polling_timeout=5)
         except Exception as e: 
             print(f"⚠️ Baglanyşyk ýalňyşlygy: {e}")
-            time.sleep(5)lygy: {e}")
             time.sleep(5)
