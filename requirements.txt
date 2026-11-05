@@ -2,6 +2,7 @@ pyTelegramBotAPI
 requests
 qrcode[pil]
 Pillow
-edge-tts
-yt-dlp[default,curl-cffi]
 beautifulsoup4
+edge-tts
+yt-dlp
+yt-dlp-ejs
